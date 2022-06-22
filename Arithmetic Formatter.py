@@ -1,44 +1,60 @@
+from codecs import latin_1_decode
 from operator import add
+from tkinter import N
 
 
-def arithmetic_arranger(problems, show):
+def arithmetic_arranger(problems, args):
     if len(problems) > 5:
         print("Error:too many problem")
 
-    arranged_problems = " "
-
+    arranged_problems = [] 
 
 for index, value in enumerate(problems):
-    operater = value.split(" ")
+ operater = value.split(" ")
 if operator(1) not in "+-":
-    print("Error: Operator must be '+' or '-' ")
-
+        print("Error: Operator must be '+' or '-' ")
+    
 if len(operator[0]) > 4 or len(operator[2]) > 4:
-    print("Error: Numbers cannot be more than four digits.")
+        print("Error: Numbers cannot be more than four digits.")
 
 try:
-    number_1 = int(operator[0])
-    number_2 = int(operator[2])
+       number_1 = int(operator[0])
+       number_2 = int(operator[2])
 
 except ValueError:
-    print("Error: Numbers must only contain digits.")
+        print ("Error: Numbers must only contain digits.")
 
 # calculate the length of each line
 addition_values = max(len(operator[0]), len(operator[2]))
 width = addition_values + 1
 # add spaces to each lne
-# line 1
-# line 2
-number_1 = " "
-number_2 = ""
-# generate the correct number of dashes below the problem statement
-# append the answer if necessary
+#result = f"{operator[0]:>{width}}\n{f'{operator[1]} {operator[2]}':>{width}}\n{'-'*width}"
 
-t_problem = f"""
-    {number_1}
-    {operator[1]} {number_2}
-    """
+R1 = f"{operator[0]:>{width}}"
+R2 = f"{f'{operator[1]} {operator[2]}':>{width}}"
+d = '-' * width
+answer =  int(operator[0]) + int(operator[1])
 
-arranged_problems += t_problems
+try:
+   arranged_problems += ('' * 4) + R1
+except IndexError:
+     arranged_problems.append(R1)
 
-return arranged_problems
+try:
+   arranged_problems += ('' * 4) + R2
+except IndexError:
+     arranged_problems.append(R2)
+
+try:
+   arranged_problems += ('' * 4) + d
+except IndexError:
+     arranged_problems.append(d)
+
+if args:
+
+  
+#print(f"{arranged_problems[0]}\n{arranged_problems[1]}\n{arranged_problems[2]}")
+return f"{arranged_problems[0]}\n{arranged_problems[1]}\n{arranged_problems[2]}"
+
+
+print(arithmetic_arranger(["32 + 698", "3001 - 2", "45 + 43", "123 + 49"]))
