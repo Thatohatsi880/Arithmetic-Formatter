@@ -33,28 +33,33 @@ width = addition_values + 1
 R1 = f"{operator[0]:>{width}}"
 R2 = f"{f'{operator[1]} {operator[2]}':>{width}}"
 d = '-' * width
-answer =  int(operator[0]) + int(operator[1])
+answer = f"{int(operator[0]) + int(operator[2]):>{width}}"
+a = f'{answer:<{width}}'
 
 try:
-   arranged_problems += ('' * 4) + R1
+   arranged_problems[1] += ('' * 4) + R1
 except IndexError:
      arranged_problems.append(R1)
 
 try:
-   arranged_problems += ('' * 4) + R2
+   arranged_problems[2] += ('' * 4) + R2
 except IndexError:
      arranged_problems.append(R2)
 
 try:
-   arranged_problems += ('' * 4) + d
+   arranged_problems[3] += ('' * 4) + d
 except IndexError:
      arranged_problems.append(d)
 
 if args:
+   try:
+     arranged_problems[3] += ('' * 4) + a
+   except IndexError:
+     arranged_problems.append(a)
 
   
 #print(f"{arranged_problems[0]}\n{arranged_problems[1]}\n{arranged_problems[2]}")
-return f"{arranged_problems[0]}\n{arranged_problems[1]}\n{arranged_problems[2]}"
+return f"{arranged_problems[0]}\n{arranged_problems[1]}\n{arranged_problems}[2]\n{arranged_problems[3]} "
 
 
 print(arithmetic_arranger(["32 + 698", "3001 - 2", "45 + 43", "123 + 49"]))
