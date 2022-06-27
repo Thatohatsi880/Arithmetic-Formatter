@@ -31,10 +31,9 @@ width = addition_values + 1
 #result = f"{operator[0]:>{width}}\n{f'{operator[1]} {operator[2]}':>{width}}\n{'-'*width}"
 
 R1 = f"{operator[0]:>{width}}"
-R2 = f"{f'{operator[1]} {operator[2]}':>{width}}"
+R2 = operator[1] + f"{operator[2]:>{width-1}}"
 d = '-' * width
-answer = f"{int(operator[0]) + int(operator[2]):>{width}}"
-a = f'{answer:<{width}}'
+
 
 try:
    arranged_problems[1] += ('' * 4) + R1
@@ -51,15 +50,26 @@ try:
 except IndexError:
      arranged_problems.append(d)
 
+
 if args:
-   try:
+   """
+   This runs if the second parameter True is
+   passed in denoting we need to calculate
+   the answer value.
+   """
+      answer = f"{int(operator[0]) + int(operator[2]):>{width}}"
+      if operator[1] == '+' else: int(operator[0]) - int(operator[2])
+a = f'{str(answer):<{width}}'
+
+
+try:
      arranged_problems[3] += ('' * 4) + a
-   except IndexError:
+except IndexError:
      arranged_problems.append(a)
 
   
 #print(f"{arranged_problems[0]}\n{arranged_problems[1]}\n{arranged_problems[2]}")
-return f"{arranged_problems[0]}\n{arranged_problems[1]}\n{arranged_problems}[2]\n{arranged_problems[3]} "
-
-
-print(arithmetic_arranger(["32 + 698", "3001 - 2", "45 + 43", "123 + 49"]))
+r_output = f"{arranged_problems[0]}\n{arranged_problems[1]}\n{arranged_problems}[2]\n{arranged_problems[3]}"
+r_output = r_output + f"\n arranged_problems[3]"
+if args else r_output
+return output
